@@ -1,0 +1,84 @@
+.signin {
+  animation-delay: .4s;
+  animation-duration: .6s;
+}
+
+.signin .box__information {
+  margin-bottom: 49px;
+}
+
+.signin__invalid .box__information {
+  margin-bottom: 20px;
+}
+
+#greeting {
+  position: relative;
+
+  .text-wrapper {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    vertical-align: bottom;
+  }
+
+  .letter {
+    display: inline-block;
+    line-height: 1em;
+
+    &.space { width: 8px; }
+  }
+}
+
+@-webkit-keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.sso-toggle {
+  margin-top: 5px;
+  text-align: right;
+  color: #43A1F7;
+
+  &:hover {
+    color: #43A1F7;
+  }
+
+  &:focus {
+    color: #43A1F7;
+  }
+}
+
+##{passwordRowId}.password-row-disabled {
+  opacity: 40%;
+  input {
+    background-color: $filler-grey
+  }
+  a {
+    color: $filler-grey;
+    text-decoration: none;
+  }
+}
+

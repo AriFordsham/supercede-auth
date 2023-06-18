@@ -1,0 +1,36 @@
+cabal-version: 2.2
+name:          supercede-auth
+version:       0.1.0
+build-type:    Simple
+
+library
+  exposed-modules:    Supercede.Auth
+  other-modules:      StaticFiles
+  hs-source-dirs:     src
+  default-extensions: NoImplicitPrelude
+  build-depends:
+    , base
+    , classy-prelude
+    , foreign-store
+    , fsnotify
+    , path
+    , path-io
+    , shakespeare
+    , wai
+    , warp
+    , yesod
+    , yesod-auth         >=1.6   && <1.7
+    , yesod-auth-simple  >=1.1.1
+    , yesod-autoreload
+    , yesod-core
+    , yesod-static
+
+  ghc-options:
+    -O2 -Wall -Werror -fwarn-tabs -Wincomplete-uni-patterns
+    -Wincomplete-record-updates -Widentities -Wredundant-constraints
+    -Wcpp-undef -Wimplicit-prelude -Wno-type-defaults
+
+    -- TODO: Prune packages
+    -- -Wunused-packages
+
+  default-language:   Haskell2010

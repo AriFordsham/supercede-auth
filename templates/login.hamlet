@@ -1,0 +1,57 @@
+$maybe err <- mErr
+  <p>#{err}
+
+<.main role=main>
+  <.box.signin.animated.fadeInDown>
+    <h1#greeting.auth-title>
+      <span.text-wrapper>
+        <span#period>
+      <br>
+      We've missed you.
+
+    <p.box__information>
+      <span>Don't have an account?
+      <a href="@{toParent registerR}">Create one now.
+
+    <form role=form method=post action="@{toParent loginR}">
+
+      $maybe token <- reqToken req
+        <input type=hidden name=#{defaultCsrfParamName} value=#{token}>
+
+      <.form__body>
+        <.form__row>
+          <label.label for=email>Email
+          $maybe email <- mEmail
+            <input#email.input
+              type=email
+              name=email
+              data-lpignore=true
+              placeholder="Enter your corporate email"
+              value=#{email}
+              required>
+          $nothing
+            <input#email.input
+              type=email
+              name=email
+              data-lpignore=true
+              placeholder="Enter your corporate email"
+              autofocus
+              required>
+
+        <.form__row id=#{passwordRowId}>
+          <label.label for=password>Password
+          <.eye>
+            <input#password.input.input__eye
+              type=password
+              name=password
+              data-lpignore=true
+              placeholder="Enter your password"
+              :isJust mEmail:autofocus
+              required>
+            <button.eye__button type=button aria-label="show password">
+              <img.show-password__icon src=@{StaticR svg_eye_svg} alt="show password" >
+          <a.form__link href="@{toParent resetPasswordR}">Forgot Password?
+      <button.button type=submit aria-label="sign in">Sign In
+      <button.btn-small.btn-link.sso-toggle id=#{toggleSsoId}>
+        Sign in with SSO
+

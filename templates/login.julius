@@ -1,0 +1,39 @@
+;(function ($){
+
+  var state = {
+    useSSO: false
+  };
+
+  var switchToSSOMsg = "Sign in with SSO";
+  var switchToPasswordMsg = "Sign in with password";
+
+  $('##{rawJS toggleSsoId}').click(function(event) {
+    state.useSSO = !state.useSSO;
+    $(event.target).text(state.useSSO ? switchToPasswordMsg : switchToSSOMsg);
+    var $passwordInput = $('##{rawJS passwordId}');
+    var $passwordRow = $('##{rawJS passwordRowId}');
+    var $form = $passwordRow.parents('form').first();
+
+    $passwordInput.attr('required', !state.useSSO);
+    $passwordInput.attr('disabled', state.useSSO);
+    $passwordInput.val('');
+    $passwordRow.toggleClass('password-row-disabled', state.useSSO);
+    if (state.useSSO) {
+      $passwordRow.click(function(subEvent) { subEvent.preventDefault(); });
+    } else {
+      $passwordRow.off('click');
+      $form.attr('action', '@{AuthR loginR}');
+    }
+
+    event.preventDefault();
+  });
+
+  function greet(hour) {
+    if (hour >= 0 && hour < 12) return 'Good morning!';
+    if (hour >= 12 && hour < 18) return 'Good afternoon!';
+    return 'Good evening!';
+  }
+
+  document.querySelector('#period').innerText = greet((new Date()).getHours());
+})(jQuery);
+

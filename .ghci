@@ -1,0 +1,32 @@
+:set -i./src
+:set -fobject-code
+:set -outputdir .build-cache
+:set -O0
+:set -j4
+:set +s
+:set +t
+:set -freverse-errors
+:set -fwrite-ide-info
+:set -hiedir=.hie
+:set -Wall
+:set -Wincomplete-uni-patterns
+:set -Wincomplete-record-updates
+:set -Widentities
+:set -Wredundant-constraints
+:set -Wcpp-undef
+:set -Wimplicit-prelude
+:set -Wno-type-defaults
+:set -XNoImplicitPrelude
+:set -Werror=incomplete-patterns
+:set -Werror=missing-fields
+:m -Prelude
+:m +ClassyPrelude
+:def! test const . return $ ":!clear\n:l test/Spec.hs\nmain\n"
+
+-- Run a local development server
+:{
+:def! serve \_args -> pure . unlines $
+  [ ":l ./src/Dev"
+  , "Dev.update"
+  ]
+:}
