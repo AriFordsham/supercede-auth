@@ -37,3 +37,17 @@ library
   -- -Wunused-packages
 
   default-language:   Haskell2010
+
+executable supercede-auth
+  main-is:            Main.hs
+  hs-source-dirs:     src
+  build-depends:
+    , base
+    , classy-prelude
+    , yesod
+    , yesod-auth
+    , yesod-static
+    , supercede-auth
+
+  default-language:   Haskell2010
+  default-extensions: NoImplicitPrelude
