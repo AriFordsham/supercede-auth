@@ -58,7 +58,7 @@ loginTemplate toParent mErr mEmail = do
 
 getSubHomeR :: Yesod master => SubHandlerFor SupercedeAuth master Html
 getSubHomeR = liftHandler $ do
-  toParent <- getRouteToParent
+  -- toParent <- getRouteToParent
   defaultLayout
     [whamlet|
       <p>Welcome to the subsite!

@@ -5,7 +5,10 @@ build-type:    Simple
 
 library
   exposed-modules:    Supercede.Auth
-  other-modules:      StaticFiles
+  other-modules:
+    StaticFiles
+    Supercede.Auth.Data
+
   hs-source-dirs:     src
   default-extensions: NoImplicitPrelude
   build-depends:
@@ -28,9 +31,9 @@ library
   ghc-options:
     -O2 -Wall -Werror -fwarn-tabs -Wincomplete-uni-patterns
     -Wincomplete-record-updates -Widentities -Wredundant-constraints
-    -Wcpp-undef -Wimplicit-prelude -Wno-type-defaults
+    -Wcpp-undef -Wimplicit-prelude -Wno-type-defaults -Wno-orphans
 
-    -- TODO: Prune packages
-    -- -Wunused-packages
+  -- TODO: Prune packages
+  -- -Wunused-packages
 
   default-language:   Haskell2010
