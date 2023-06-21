@@ -44,10 +44,27 @@ executable supercede-auth
   build-depends:
     , base
     , classy-prelude
+    , fsnotify
+    , path
+    , path-io
+    , shakespeare
+    , wai
     , yesod
     , yesod-auth
+    , yesod-auth-simple
+    , yesod-autoreload
+    , yesod-core
     , yesod-static
-    , supercede-auth
+
+  other-modules:
+    StaticFiles
+    Supercede.Auth
+    Supercede.Auth.Data
 
   default-language:   Haskell2010
   default-extensions: NoImplicitPrelude
+  ghc-options:
+    -O2 -Wall -Werror -fwarn-tabs -Wincomplete-uni-patterns
+    -Wincomplete-record-updates -Widentities -Wredundant-constraints
+    -Wcpp-undef -Wimplicit-prelude -Wno-type-defaults -Wno-orphans
+    -Wno-deprecations
