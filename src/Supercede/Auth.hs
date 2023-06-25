@@ -11,7 +11,6 @@ module Supercede.Auth
   , module Supercede.Auth
   , maybeAuthId
   , Auth
-  , getAuth
   ) where
 
 import ClassyPrelude hiding (Handler)

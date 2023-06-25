@@ -1,0 +1,19 @@
+packages:
+  ./.
+
+source-repository-package
+  type: git
+  location: https://github.com/AriFordsham/yesod.git
+  tag: 038452fc17a3b8aab6db6dc337d83663aca4711b
+  subdir:
+    yesod
+    yesod-auth
+    yesod-core
+    yesod-form
+    yesod-persistent
+    yesod-static
+
+source-repository-package
+  type: git
+  location: https://github.com/SupercedeTech/yesod-auth-simple
+  tag: eece011c4ad9abef545bfbc0816a09f41ae6d03e

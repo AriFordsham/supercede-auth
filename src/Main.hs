@@ -10,8 +10,6 @@
 module Main where
 
 import ClassyPrelude hiding (Handler)
-import Network.Wai (pathInfo)
-import Network.Wai qualified as W
 import Path
 import Path.IO
 import Supercede.Auth
@@ -110,36 +108,7 @@ instance RenderMessage App FormMessage where
   renderMessage _ _ = defaultFormMessage
 
 instance YesodSubDispatch SupercedeAuth App where
-  yesodSubDispatch env req = case traceShowId (pathInfo req) of
-    [] -> subHelper Supercede.Auth.getSubHomeR env (Just SubHomeR) req
-    ("auth":rest) ->
-      yesodSubDispatch
-        YesodSubRunnerEnv
-          { ysreParentRunner = yesodRunner
-          , ysreGetSub = Supercede.Auth.getAuth . getSupercedeAuth
-          , ysreToParentRoute = SupercedeAuthR . Supercede.Auth.AuthR
-          , ysreParentEnv = ysreParentEnv env
-          }
-        req { pathInfo = rest }
-    _  -> error "not found"
-
-subHelper
-  :: ToTypedContent content
-  => SubHandlerFor child master content
-  -> YesodSubRunnerEnv child master
-  -> Maybe (Route child)
-  -> W.Application
-subHelper (SubHandlerFor f) YesodSubRunnerEnv {..} mroute =
-  ysreParentRunner handler ysreParentEnv (ysreToParentRoute <$> mroute)
-  where
-    handler = fmap toTypedContent $ HandlerFor $ \hd ->
-      let rhe = handlerEnv hd
-          rhe' = rhe
-            { rheRoute = mroute
-            , rheChild = ysreGetSub $ yreSite ysreParentEnv
-            , rheRouteToMaster = ysreToParentRoute
-            }
-       in f hd { handlerEnv = rhe' }
+  yesodSubDispatch = $(mkYesodSubDispatch resourcesSupercedeAuth)
 
 makeFoundation :: IO App
 makeFoundation = App <$> newSupercedeAuth
